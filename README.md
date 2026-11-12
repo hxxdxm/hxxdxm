@@ -6,7 +6,7 @@ Python · PyTorch · YOLO · OpenCV · FastAPI · Celery · Docker · Next.js
 
 ---
 
-## About Me
+## About
 
 저는 **실험으로 근거를 찾고, 그 결과를 사람이 쓰는 서비스로 만드는 AI Vision 개발자**입니다.
 
@@ -31,13 +31,65 @@ Python · PyTorch · YOLO · OpenCV · FastAPI · Celery · Docker · Next.js
 
 ---
 
-## Highlights
+## Projects
 
-| Project | Result |
-| --- | --- |
-| 🌱 콩잎 질병 분류 AI 서비스 | Test 정확도 **0.7188 → 0.9844** · 병든 잎을 정상으로 놓친 사례 **13 → 0장** |
-| 🥬 조각김치 이물 검출 (5인 팀) | 이물 사진 900장 이중 교차검수 **900 / 900 PASS** · Val mAP50 **0.622 → 0.756** |
-| 📚 이음 독서 커뮤니티 (졸업작품 · 팀장) | 프론트엔드 **16개 페이지** · 실시간 채팅/DM · 졸업 후 버그 수정과 리팩터링까지 |
+### 🌱 [Plant Disease Vision API](https://github.com/hxxdxm/plant-disease-vision-api)
+
+#### 📈 콩잎 질병 분류 정확도 `71.9%` → `98.4%` · 학습한 모델을 Docker 서비스로 배포
+
+- 콩잎 사진을 **각진잎반점병 · 녹병 · 정상** 3클래스로 분류하도록 `ResNet-18` Fine-tuning
+- 제공 코드의 약점 4가지를 실험으로 하나씩 개선 · 병든 잎을 정상으로 놓친 사례 13장 → 0장
+- FastAPI · Redis 캐시 · Celery 비동기 작업 · PostgreSQL 기록을 Docker Compose 4개 서비스로 구성
+
+`PyTorch` `Transformers` `FastAPI` `Celery` `Redis` `PostgreSQL` `Docker`
+
+<br>
+
+### 🥬 [조각김치 이물 검출](https://github.com/hxxdxm/kimchi-foreign-object-detection) · 5인 팀
+
+#### 🔍 공장 이물 사진 `900장` 전수 교차검수 · 검출 성능(mAP50) `0.62` → `0.76`
+
+- LLM을 활용해 **라벨링 프로그램 1.0 초안** 작성 → 팀과 함께 v4.1까지 발전, 수정한 라벨이 교차검수 없이 최종 데이터로 넘어가지 않도록 하는 규칙 추가
+- **Class · BBox 라벨 기준서** 작성, 900장 중 250장 1차 검수 (판단이 애매하면 REVIEW로 보내 교차검수)
+- 같은 촬영 세션이 학습 · 검증에 섞이는 문제를 분석해 **데이터 재분할**
+- '나뭇가지' 오검출 분석: 예측 38건 중 20건을 직접 확인 → 16건이 김치 줄기 · 배추 그림자 착각임을 오류 분석표로 정리
+- 팀 산출물 11개 최종 점검
+
+`Python` `tkinter` `YOLO11n` `Ultralytics`
+
+<br>
+
+### 📚 [이음 - 독서 커뮤니티](https://github.com/hxxdxm/Capstone2) · 졸업작품 · 팀장
+
+#### 🖥️ 프론트엔드 `16개 화면` 단독 구현 · 2인 팀 팀장 · 졸업 후 버그 수정과 리팩터링까지
+
+- 독서 MBTI로 취향을 찾고, 같은 책을 읽는 사람과 모임 · 채팅으로 이어지는 서비스
+- 기획 · UI/UX 설계와 프론트엔드 전체 개발 담당 (모임방 채팅, DM, 필사 전시, 마이페이지 등)
+- 졸업 후 빌드 오류 · 화면 버그를 찾아 고치고, 흩어진 로직을 공통 함수로 정리
+
+`Next.js` `React`
+
+---
+
+## Awards & Activities
+
+| 기간 | 내용 | 결과 |
+| --- | --- | --- |
+| 2023.06 – 2023.11 | **K-디지털 챌린지 : NET 챌린지 캠프 시즌10** (과학기술정보통신부 주최)<br>`CrossSafe` 교차로 우회전 차량의 일시정지 여부 인식 · 자료조사 · 발표자료 제작 | **본선 진출** |
+| 2026.06 | 춘계 졸업작품발표회 · 이음 (팀장 · 프론트엔드) | 발표 |
+| 2026.07 – 2027.02 | 현장 데이터 기반 Vision AI & 산업분야 Vertical AI 융합 전문가 양성 과정 | 수강 중 |
+| 2026 – | `TrueHue` 색각이상자를 위한 색 탐지 프로그램 (2인 팀) · Figma 화면 설계 | 진행 중 |
+
+---
+
+## Education
+
+- 컴퓨터공학 전공
+- **빅데이터분석 융합전공** (부전공 18학점)
+  - 빅데이터마이닝 `Excel` 신뢰구간 · 표본 크기 · 가설검정
+  - 빅데이터프로그래밍 `R`
+  - 다변량분석 `SPSS`
+  - 빅데이터마케팅 · 빅데이터시각화디자인 · 빅데이터개론
 
 ---
 
@@ -58,53 +110,40 @@ Python · PyTorch · YOLO · OpenCV · FastAPI · Celery · Docker · Next.js
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Unix](https://img.shields.io/badge/Unix-555555?style=for-the-badge)
 
-### Frontend
+### Web / Frontend
 
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white)
+
+### Language
+
+![C](https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=black)
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+
+### Data
+
+![R](https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white)
+![SPSS](https://img.shields.io/badge/SPSS-052FAD?style=for-the-badge&logo=ibm&logoColor=white)
+![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
 
 ### Collaboration
 
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
----
+### 📖 Currently Learning
 
-## Projects
-
-### 🌱 [Plant Disease Vision API](https://github.com/hxxdxm/plant-disease-vision-api)
-
-> 콩잎 사진 한 장으로 잎의 질병을 분류하는 AI 웹 서비스
-
-- `microsoft/resnet-18`을 **각진잎반점병 · 녹병 · 정상** 3클래스로 Fine-tuning
-- 제공 코드의 약점 4가지를 실험으로 하나씩 확인해 개선 → **Test 정확도 0.7188 → 0.9844**
-- 동기 API · Redis 캐시 · Celery 비동기 작업 · PostgreSQL 기록을 **Docker Compose 4개 서비스**로 구성
-
-`PyTorch` `Transformers` `FastAPI` `Celery` `Redis` `PostgreSQL` `Docker`
-
-### 🥬 [조각김치 이물 검출](https://github.com/hxxdxm/kimchi-foreign-object-detection) · 5인 팀
-
-> 라벨 검수 도구 제작부터 YOLO 검출 모델 학습 · 검증까지 한 사이클 완성
-
-- 식품 공장 이물 사진 900장을 직접 만든 검수 도구로 **이중 교차검수 (900 / 900 PASS)**
-- YOLO11n 학습 → 실패 분석 → 개선 실험으로 **Val mAP50 0.622 → 0.756**
-- 담당: **Docs / Guide** (라벨 검수), **Inference / Document** (검출 모델)
-
-`Python` `tkinter` `YOLO11n` `Ultralytics`
-
-### 📚 [이음 - 독서 커뮤니티](https://github.com/hxxdxm/Capstone2) · 졸업작품 · 팀장
-
-> 독서 MBTI로 취향을 찾고, 같은 책을 읽는 사람과 실시간으로 이어지는 서비스
-
-- **프론트엔드 전담 + UI/UX**: Next.js App Router 기반 16개 페이지 구현
-- Socket.io로 모임방 그룹 채팅 · 1:1 DM 실시간 UI, JWT 인증 흐름 구현
-- 졸업 후 버그 수정 · 공통 로직 리팩터링 · 문서화까지 이어서 진행
-
-`Next.js` `React` `TypeScript` `Socket.io`
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white)
 
 ---
 
