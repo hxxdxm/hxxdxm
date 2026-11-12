@@ -125,7 +125,6 @@ Python · PyTorch · YOLO · OpenCV · FastAPI · Celery · Docker · Next.js
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Unix](https://img.shields.io/badge/Unix-555555?style=for-the-badge)
 
 ### Web / Frontend
 
