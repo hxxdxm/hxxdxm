@@ -150,5 +150,4 @@ Python · PyTorch · YOLO · OpenCV · FastAPI · Celery · Docker · Next.js
 ## Contact
 
 - GitHub: [@hxxdxm](https://github.com/hxxdxm)
-<!-- 공개해도 괜찮은 연락처가 있으면 아래 줄의 주석을 풀고 채워 주세요 -->
-<!-- - Email: -->
+- Email: 1004hamine@naver.com
