@@ -6,7 +6,7 @@ Python · PyTorch · YOLO · OpenCV · FastAPI · Celery · Docker · Next.js
 
 ---
 
-## About
+## About Me
 
 저는 **실험으로 근거를 찾고, 그 결과를 사람이 쓰는 서비스로 만드는 AI Vision 개발자**입니다.
 
