@@ -1,7 +1,7 @@
 <!-- GitHub Profile README | hxxdxm/hxxdxm -->
 <div align="center">
 
-<img src="assets/header.svg" width="100%" alt="김하민 Hamin Kim · Vision AI · Data Quality · Web Service"/>
+<img src="assets/header-v2.svg" width="100%" alt="김하민 Hamin Kim · Vision AI · Data Quality · Web Service"/>
 
 <br/>
 
@@ -49,7 +49,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 ## 📊 Impact at a Glance
 
-<img src="assets/impact.svg" width="100%" alt="Test 정확도 98.4% · 이물 사진 900장 교차검수 · 프론트엔드 16개 화면 · NET 챌린지 본선 진출"/>
+<img src="assets/impact-v2.svg" width="100%" alt="이물 검출 mAP50 0.62 → 0.76 · 이미지 분류 Test 정확도 98.4% · 프론트엔드 16개 화면 · NET 챌린지 본선 진출"/>
 
 <sub>※ 각 수치는 아래 프로젝트 README에 기록된 결과입니다. 조각김치 이물 검출의 수치는 5인 팀 공동 성과입니다.</sub>
 
@@ -59,18 +59,18 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 <sub>카드를 누르면 저장소로 이동하고, <b>자세히 보기</b>를 누르면 세부 내용이 펼쳐집니다.</sub>
 
-<a href="https://github.com/hxxdxm/kimchi-foreign-object-detection"><img src="assets/project-01.svg" width="100%" alt="01 조각김치 이물 검출: 흔들리던 라벨 기준을 바로잡아야 모델도 믿을 수 있기에, 기준서와 교차검수로 900장 정답지를 다시 세워 검출 성능을 높였습니다. 900/900 교차검수 PASS"/></a>
+<a href="https://github.com/hxxdxm/kimchi-foreign-object-detection"><img src="assets/project-01-v2.svg" width="100%" alt="01 조각김치 이물 검출: 흔들리던 라벨 기준을 바로잡아야 모델도 믿을 수 있기에, 기준서와 교차검수로 900장 정답지를 다시 세워 검출 성능(mAP50)을 0.62에서 0.76으로 높였습니다."/></a>
 
 <details>
-<summary><b>🔎 자세히 보기</b> &nbsp;·&nbsp; 문제 · 내 역할 · 오류 분석 · 결과 · 기술</summary>
+<summary><b>🔎 자세히 보기</b> &nbsp;·&nbsp; 핵심 성과 · 문제 · 내 역할 · 오류 분석 · 기술</summary>
 
 <br/>
 
 <table>
+<tr><td width="96" nowrap><b>핵심 성과 (팀)</b></td><td>검출 성능 <b>Val mAP50 0.62 → 0.76</b> · 900 / 900 교차검수 PASS · AI 후보 라벨 72% 그대로 승인</td></tr>
 <tr><td width="96" nowrap><b>문제</b></td><td>식품 공장 이물 사진 900장 중 <b>52%의 라벨이 수정이 필요할 만큼 기준이 흔들려</b> 있었고, 같은 촬영 세션의 사진이 학습 · 검증 데이터에 섞여 있었습니다.</td></tr>
 <tr><td width="96" nowrap><b>내 역할</b></td><td>LLM을 활용해 <b>라벨링 프로그램 1.0 초안</b> 작성 → 팀과 v4.1까지 발전<br/><b>Class · BBox 라벨 기준서</b> 작성, 250장 1차 검수 (애매한 경우 REVIEW로 보내 교차검수)<br/>세션 단위 <b>데이터 재분할</b> · 산출물 11개 최종 점검</td></tr>
 <tr><td width="96" nowrap><b>오류 분석</b></td><td>'나뭇가지' 예측 38건 중 20건을 직접 확인 → <b>16건이 김치 줄기 · 배추 그림자 착각</b>임을 오류 분석표로 정리</td></tr>
-<tr><td width="96" nowrap><b>결과 (팀)</b></td><td>900 / 900 교차검수 PASS · Val mAP50 <b>0.62 → 0.76</b> · AI 후보 라벨 72% 그대로 승인</td></tr>
 <tr><td width="96" nowrap><b>기술</b></td><td><code>Python</code> <code>tkinter</code> <code>YOLO11n</code> <code>Ultralytics</code> <code>Figma</code></td></tr>
 </table>
 
