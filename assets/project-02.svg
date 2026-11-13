@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="200" viewBox="0 0 1200 200" role="img" aria-label="02 Plant Disease Vision API: 기준 모델이 병든 잎을 정상으로 놓치는 문제를 해결하려고, 약점을 실험으로 하나씩 고쳐 정확도를 높이고 서비스로 배포했습니다. 핵심 성과 98.4% Test 정확도">
+  <defs>
+    <filter id="sh" x="-5%" y="-10%" width="110%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#3D5266" flood-opacity="0.13"/></filter>
+    <clipPath id="cl"><rect x="12" y="12" width="1176" height="176" rx="24"/></clipPath>
+    <style>
+      .ko { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; }
+      .en { font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+    </style>
+  </defs>
+  <g filter="url(#sh)"><rect x="12" y="12" width="1176" height="176" rx="24" fill="#FFFFFF" stroke="#DDE6E0"/></g>
+  <g clip-path="url(#cl)">
+    <rect x="12" y="12" width="132" height="176" fill="#5B8A72"/>
+    <rect x="900" y="12" width="288" height="176" fill="#EEF2E6"/>
+  </g>
+  <text x="78" y="112" text-anchor="middle" class="en" font-size="54" font-weight="800" fill="#FFFFFF">02</text>
+  <text x="78" y="140" text-anchor="middle" class="en" font-size="11" font-weight="700" letter-spacing="2" fill="#FFFFFF" opacity="0.8">PROJECT</text>
+
+  <text x="176" y="50" class="en" font-size="12.5" font-weight="800" letter-spacing="2.5" fill="#5B8A72">VISION AI · MODEL SERVING</text>
+  <text x="176" y="86" class="ko" font-size="27" font-weight="800" fill="#1F2D3A">Plant Disease Vision API</text>
+  <rect x="535" y="66" width="101" height="26" rx="13" fill="none" stroke="#5B8A72" stroke-opacity="0.45"/><text x="586" y="84" text-anchor="middle" class="ko" font-size="13" font-weight="600" fill="#5B8A72">이미지 분류</text>
+  <rect x="644" y="66" width="77" height="26" rx="13" fill="none" stroke="#5B8A72" stroke-opacity="0.45"/><text x="683" y="84" text-anchor="middle" class="ko" font-size="13" font-weight="600" fill="#5B8A72">FastAPI</text>
+  <rect x="729" y="66" width="68" height="26" rx="13" fill="none" stroke="#5B8A72" stroke-opacity="0.45"/><text x="763" y="84" text-anchor="middle" class="ko" font-size="13" font-weight="600" fill="#5B8A72">Docker</text>
+  <text x="176" y="132" class="ko" font-size="17.5" font-weight="500" fill="#2B3B48">기준 모델이 병든 잎을 정상으로 놓치는 문제를 해결하려고,</text>
+  <text x="176" y="160" class="ko" font-size="17.5" font-weight="500" fill="#2B3B48">약점을 실험으로 하나씩 고쳐 정확도를 높이고 서비스로 배포했습니다.</text>
+
+  <text x="1044" y="98" text-anchor="middle" class="en" font-size="58" font-weight="800" fill="#5B8A72">98.4%</text>
+  <text x="1044" y="132" text-anchor="middle" class="ko" font-size="16" font-weight="700" fill="#1F2D3A">Test 정확도</text>
+  <text x="1044" y="156" text-anchor="middle" class="ko" font-size="14" fill="#5A6B78">71.9%에서 개선</text>
+</svg>
