@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-label="김하민 Hamin Kim · Vision AI · Data Quality · Web Service">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7F8F3"/>
+      <stop offset="0.5" stop-color="#E8F0E3"/>
+      <stop offset="1" stop-color="#DCE6EE"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.8" cy="0.3" r="0.6">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0 H0 V28" fill="none" stroke="#3D5266" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <clipPath id="card"><rect width="1200" height="340" rx="28"/></clipPath>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#3D5266" flood-opacity="0.14"/></filter>
+    <style>
+      .ko { font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; }
+      .en { font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+      .flow { stroke-dasharray: 6 6; animation: flow 1.2s linear infinite; }
+      .pulse { animation: pulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .p2 { animation-delay: .8s; } .p3 { animation-delay: 1.6s; }
+      .cursor { animation: blink 1.1s step-end infinite; }
+      @keyframes blink { 50% { opacity: 0; } }
+      @keyframes flow { to { stroke-dashoffset: -24; } }
+      @keyframes pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: .55; } }
+    </style>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="1200" height="340" fill="url(#bg)"/>
+    <rect width="1200" height="340" fill="url(#grid)"/>
+    <rect width="1200" height="340" fill="url(#glow)"/>
+    <circle cx="1150" cy="350" r="170" fill="#C9DCCF" opacity="0.5"/>
+    <circle cx="40" cy="-30" r="120" fill="#FFFFFF" opacity="0.6"/>
+  </g>
+
+  <!-- 왼쪽: 소개 -->
+  <text x="76" y="92" class="en" font-size="17" font-weight="700" letter-spacing="4" fill="#5B8A72">HELLO, I'M</text>
+  <text x="74" y="156" class="ko" font-size="58" font-weight="800" fill="#1F2D3A">김하민</text>
+  <text x="276" y="156" class="en" font-size="34" font-weight="600" fill="#3D5266">Hamin Kim</text>
+
+  <g class="en" font-size="15" font-weight="700">
+    <rect x="76" y="182" width="118" height="34" rx="17" fill="#2F6B5E"/>
+    <text x="135" y="204" text-anchor="middle" fill="#FFFFFF">Vision AI</text>
+    <rect x="204" y="182" width="136" height="34" rx="17" fill="#FFFFFF" stroke="#8FB9A2" stroke-width="1.5"/>
+    <text x="272" y="204" text-anchor="middle" fill="#2F6B5E">Data Quality</text>
+    <rect x="350" y="182" width="132" height="34" rx="17" fill="#FFFFFF" stroke="#9FB3C6" stroke-width="1.5"/>
+    <text x="416" y="204" text-anchor="middle" fill="#3D5266">Web Service</text>
+  </g>
+
+  <text x="76" y="262" class="ko" font-size="21" font-weight="600" fill="#1F2D3A">데이터의 기준을 세우고, 결과를 근거로 증명합니다.</text>
+  <text x="76" y="292" class="ko" font-size="16" fill="#5A6B78">라벨 검수 · 모델 학습 · API 서빙 · 웹 화면까지 한 사이클을 끝까지 완성하는 개발자</text>
+
+  <!-- 오른쪽: A안 디자인 + 터미널 문구 -->
+  <g filter="url(#sh)"><rect x="756" y="52" width="380" height="240" rx="22" fill="#FFFFFF" opacity="0.94"/></g>
+  <g stroke="#2F6B5E" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85">
+    <path d="M742 78 V 40 H 780"/><path d="M1112 40 H 1150 V 78"/>
+    <path d="M742 266 V 304 H 780"/><path d="M1112 304 H 1150 V 266"/>
+  </g>
+  <!-- 창 버튼 + 경로 -->
+  <circle cx="782" cy="76" r="5" fill="#E9A3A3"/><circle cx="798" cy="76" r="5" fill="#EBD48F"/><circle cx="814" cy="76" r="5" fill="#A9CDB8"/>
+  <text x="1112" y="81" text-anchor="end" class="en" font-size="12" font-weight="600" fill="#9AA8B4">hamin@portfolio:~</text>
+  <path class="flow" d="M790 120 V 252" stroke="#C9DCCF" stroke-width="2.5" fill="none"/>
+
+  <circle class="pulse" cx="790" cy="112" r="7" fill="#2F6B5E"/>
+  <text x="808" y="117" font-family="'JetBrains Mono','Consolas','D2Coding',monospace" font-size="14.5" font-weight="700" fill="#2F6B5E">$ whoami</text>
+  <text x="808" y="139" class="en" font-size="14.5" font-weight="600" fill="#1F2D3A">Vision AI · Data Quality</text>
+
+  <circle class="pulse p2" cx="790" cy="174" r="7" fill="#5B8A72"/>
+  <text x="808" y="179" font-family="'JetBrains Mono','Consolas','D2Coding',monospace" font-size="14.5" font-weight="700" fill="#5B8A72">$ cat focus.txt</text>
+  <text x="808" y="201" class="ko" font-size="14.5" font-weight="600" fill="#1F2D3A">기준 → 검수 → 학습 → 서비스</text>
+
+  <circle class="pulse p3" cx="790" cy="236" r="7" fill="#3D5266"/>
+  <text x="808" y="241" font-family="'JetBrains Mono','Consolas','D2Coding',monospace" font-size="14.5" font-weight="700" fill="#3D5266">$ git push --evidence<tspan class="cursor" fill="#2F6B5E"> ▍</tspan></text>
+  <text x="808" y="263" class="en" font-size="13.5" font-weight="600" fill="#1F2D3A">✓ mAP50 0.62→0.76 · acc 98.4%</text>
+</svg>
