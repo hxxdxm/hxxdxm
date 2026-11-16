@@ -1,4 +1,6 @@
 <!-- GitHub Profile README | hxxdxm/hxxdxm -->
+<a id="top"></a>
+
 <div align="center">
 
 <img src="assets/header-v2.svg" width="100%" alt="김하민 Hamin Kim · Vision AI · Data Quality · Web Service"/>
@@ -57,14 +59,9 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 ## 🚀 Projects
 
-<sub>카드를 누르면 저장소로 이동하고, <b>자세히 보기</b>를 누르면 세부 내용이 펼쳐집니다.</sub>
+<sub>카드를 누르면 저장소로 이동합니다.</sub>
 
 <a href="https://github.com/hxxdxm/kimchi-foreign-object-detection"><img src="assets/project-01-v2.svg" width="100%" alt="01 조각김치 이물 검출: 흔들리던 라벨 기준을 바로잡아야 모델도 믿을 수 있기에, 기준서와 교차검수로 900장 정답지를 다시 세워 검출 성능(mAP50)을 0.62에서 0.76으로 높였습니다."/></a>
-
-<details>
-<summary><b>🔎 자세히 보기</b> &nbsp;·&nbsp; 핵심 성과 · 문제 · 내 역할 · 오류 분석 · 기술</summary>
-
-<br/>
 
 <table>
 <tr><td width="96" nowrap><b>핵심 성과 (팀)</b></td><td>검출 성능 <b>Val mAP50 0.62 → 0.76</b> · 900 / 900 교차검수 PASS · AI 후보 라벨 72% 그대로 승인</td></tr>
@@ -76,16 +73,10 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 <a href="https://github.com/hxxdxm/kimchi-foreign-object-detection"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
 
-</details>
 
 <br/>
 
 <a href="https://github.com/hxxdxm/plant-disease-vision-api"><img src="assets/project-02.svg" width="100%" alt="02 Plant Disease Vision API: 기준 모델이 병든 잎을 정상으로 놓치는 문제를 해결하려고, 약점을 실험으로 하나씩 고쳐 정확도를 높이고 서비스로 배포했습니다. Test 정확도 98.4%"/></a>
-
-<details>
-<summary><b>🔎 자세히 보기</b> &nbsp;·&nbsp; 문제 · 수행 · 결과 · 서비스 · 기술</summary>
-
-<br/>
 
 <table>
 <tr><td width="96" nowrap><b>문제</b></td><td>제공된 기준 코드로 학습하면 Test 정확도가 71.9%에 그치고, <b>병든 잎 13장을 정상으로 놓쳤습니다.</b> 모델을 실제 요청으로 받을 서비스 구조도 필요했습니다.</td></tr>
@@ -97,16 +88,10 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 <a href="https://github.com/hxxdxm/plant-disease-vision-api"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
 
-</details>
 
 <br/>
 
 <a href="https://github.com/hxxdxm/Capstone2"><img src="assets/project-03.svg" width="100%" alt="03 이음 독서 커뮤니티: 혼자 하는 독서를 취향이 맞는 사람과 잇고 싶어 서비스를 기획하고, 프론트엔드 16개 화면을 만들어 졸업작품발표회에서 발표했습니다."/></a>
-
-<details>
-<summary><b>🔎 자세히 보기</b> &nbsp;·&nbsp; 문제 · 내 역할 · 개선 · 기술</summary>
-
-<br/>
 
 <table>
 <tr><td width="96" nowrap><b>문제</b></td><td>혼자 하는 독서를 <b>취향이 맞는 사람과 연결</b>하고, 감상과 문장을 나눌 공간이 필요했습니다.</td></tr>
@@ -117,21 +102,28 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 <a href="https://github.com/hxxdxm/Capstone2"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
 
-</details>
 
 <br/>
 
-<details>
-<summary><b>🗂️ 그 밖의 활동 펼치기 · CrossSafe · TrueHue</b></summary>
+<!-- TODO: TrueHue 저장소를 fork하면 아래 img를 <a href="https://github.com/hxxdxm/저장소이름">...</a>로 감싸기 -->
+<img src="assets/project-04.svg" width="100%" alt="04 TrueHue: 색 구분이 어려운 사람도 지금 보는 색을 알 수 있도록, 색각이상자를 위한 색 탐지 프로그램을 기획하고 Figma로 화면을 설계하고 있습니다."/>
+
+<table>
+<tr><td width="96" nowrap><b>소개</b></td><td>색각이상자를 위한 색 탐지 프로그램</td></tr>
+<tr><td width="96" nowrap><b>내 역할</b></td><td>2인 팀 · <b>Figma 화면 설계</b></td></tr>
+<tr><td width="96" nowrap><b>상태</b></td><td>진행 중 · 저장소 연결 예정</td></tr>
+<tr><td width="96" nowrap><b>기술</b></td><td><code>Figma</code></td></tr>
+</table>
 
 <br/>
+
+#### 🗂️ 그 밖의 활동
 
 | 프로젝트 | 내용 | 역할 · 상태 |
 | :--- | :--- | :--- |
 | **CrossSafe** | 교차로에서 우회전 차량의 일시정지 여부를 인식하는 시스템 · NET 챌린지 캠프 시즌10 | 자료조사 · 발표자료 제작 · **본선 진출** |
-| **TrueHue** | 색각이상자를 위한 색 탐지 프로그램 (2인 팀) | Figma 화면 설계 · **진행 중** |
 
-</details>
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
 
 <br/>
 
@@ -168,8 +160,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 </div>
 
-<details>
-<summary><b>전체 기술 스택 펼치기</b> &nbsp;·&nbsp; Frontend · Backend · AI · Language · Deploy · Collaboration</summary>
+<br/>
 
 <br/>
 
@@ -183,7 +174,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 | ☁️ **Deploy · Infra** | `Docker` `Docker Compose` `Kubernetes` `Nginx` `Linux` `AWS EC2` `AWS S3` `AWS EC2 G5` |
 | 🤝 **Collaboration** | `Git` `GitHub` `Figma` |
 
-</details>
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
 
 <br/>
 
@@ -197,8 +188,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 | 2026.06 | 춘계 졸업작품발표회 · 이음 (팀장 · 프론트엔드) | 🎤 발표 |
 | 2026.07 – 2027.02 | 현장 데이터 기반 Vision AI & 산업분야 Vertical AI 융합 전문가 양성 과정 | 🌱 수강 중 |
 
-<details>
-<summary><b>빅데이터분석 융합전공 수강 과목 보기</b></summary>
+**📈 빅데이터분석 융합전공 수강 과목**
 
 <br/>
 
@@ -209,7 +199,6 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 | 다변량분석 | `SPSS` |
 | 빅데이터마케팅 · 빅데이터시각화디자인 · 빅데이터개론 | 데이터 해석 · 시각화 |
 
-</details>
 
 <br/>
 
@@ -225,3 +214,5 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 <sub>Set the standard · Check the data · Build the model · Serve the result · Share the evidence</sub>
 
 </div>
+
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
