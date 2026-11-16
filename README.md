@@ -183,6 +183,23 @@ flowchart LR
 
 </div>
 
+<details>
+<summary><b>전체 기술 스택 펼치기</b> &nbsp;·&nbsp; Frontend · Backend · AI · Language · Deploy · Collaboration</summary>
+
+<br/>
+
+| 분야 | 기술 |
+| :--- | :--- |
+| 🖥️ **Frontend** | `HTML5` `CSS3` `JavaScript` `TypeScript` `React` `Next.js` `Socket.io` |
+| ⚙️ **Backend** | `FastAPI` `Celery` `Redis` `PostgreSQL` |
+| 🤖 **AI · Vision** | `PyTorch` `Hugging Face Transformers` `YOLO11 (Ultralytics)` `OpenCV` |
+| 📈 **Data** | `R` `SPSS` `Excel` |
+| 💻 **Language · CS** | `Python` `C` `C++` |
+| ☁️ **Deploy · Infra** | `Docker` `Docker Compose` `Kubernetes` `Nginx` `Linux` `AWS EC2` `AWS S3` `AWS EC2 G5` |
+| 🤝 **Collaboration** | `Git` `GitHub` `Figma` |
+
+</details>
+
 <br/>
 
 ## 🎓 Education & Activities
