@@ -150,24 +150,9 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 ## 🔄 How I Work
 
-```mermaid
-flowchart LR
-    A["01 · 기준 정하기<br/>문제 · 성공 기준<br/>라벨 기준서"]
-    B["02 · 데이터 점검<br/>검수 · 교차검수<br/>세션 단위 분할"]
-    C["03 · 모델 실험<br/>Baseline<br/>변수 하나씩 개선"]
-    D["04 · 평가<br/>Validation으로 선택<br/>Test는 단 1회"]
-    E["05 · 서비스화<br/>API · 웹 화면<br/>Docker"]
-    F["06 · 기록 · 공유<br/>오류 분석 · README<br/>발표"]
-    A --> B --> C --> D --> E --> F
-    F -. 오류 분석으로 다시 개선 .-> B
+<p align="center"><img src="assets/how-i-work.svg" width="100%" alt="End-to-End Project Flow: Plan → Design → Build → Ship → Review"/></p>
 
-    classDef step fill:#F5F7F4,stroke:#8FB9A2,stroke-width:2px,color:#1F2D3A;
-    classDef key fill:#2F6B5E,stroke:#1F4F45,stroke-width:2px,color:#FFFFFF;
-    class A,B,C,E,F step;
-    class D key;
-```
-
-<sub>점수가 올랐다는 사실보다 **왜 올랐는지 설명할 수 있는 것**을 더 중요하게 생각합니다.</sub>
+<sub>기획부터 배포까지 <b>한 프로젝트의 전체 흐름</b>을 설계하고, 각 계층이 주고받는 <b>데이터 약속</b>을 먼저 맞춘 뒤 구현합니다.<br/>배포 후에는 <b>리뷰와 회고</b>로 찾은 개선점을 다음 설계에 다시 반영합니다.</sub>
 
 <br/>
 
