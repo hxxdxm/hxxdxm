@@ -89,6 +89,8 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 <a href="https://github.com/hxxdxm/plant-disease-vision-api"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
 
 
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
+
 <br/>
 
 <a href="https://github.com/hxxdxm/Capstone2"><img src="assets/project-03.svg" width="100%" alt="03 이음 독서 커뮤니티: 혼자 하는 독서를 취향이 맞는 사람과 잇고 싶어 서비스를 기획하고, 프론트엔드 16개 화면을 만들어 졸업작품발표회에서 발표했습니다."/></a>
@@ -146,6 +148,8 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 <sub>기획부터 배포까지 <b>한 프로젝트의 전체 흐름</b>을 설계하고, 각 계층이 주고받는 <b>데이터 약속</b>을 먼저 맞춘 뒤 구현합니다.<br/>배포 후에는 <b>리뷰와 회고</b>로 찾은 개선점을 다음 설계에 다시 반영합니다.</sub>
 
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
+
 <br/>
 
 ## 🛠 Tech Stack
@@ -174,7 +178,6 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 | ☁️ **Deploy · Infra** | `Docker` `Docker Compose` `Kubernetes` `Nginx` `Linux` `AWS EC2` `AWS S3` `AWS EC2 G5` |
 | 🤝 **Collaboration** | `Git` `GitHub` `Figma` |
 
-<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
 
 <br/>
 
