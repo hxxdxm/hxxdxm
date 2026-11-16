@@ -1,233 +1,233 @@
-# 산출물 3. API 명세서
+<!-- GitHub Profile README | hxxdxm/hxxdxm -->
+<a id="top"></a>
 
-- Base URL: `http://127.0.0.1:8000`
-- Swagger UI: `http://127.0.0.1:8000/docs`
-- 모든 응답 예시는 **실제 실행 결과**이다(2026-11-04, `MODEL_PATH=artifacts/beans_resnet18`). 이후 서비스 모델을 개선 모델로 바꿨지만 API 형식은 같다. 교체 후 응답 예시는 산출물 9 §7단계 참고. 긴 소수는 그대로 옮겼다.
+<div align="center">
 
-## 1. API 목록
+<img src="assets/header-v2.svg" width="100%" alt="김하민 Hamin Kim · Vision AI · Data Quality · Web Service"/>
 
-| API ID | Method | URL | 요청 형태 | 성공 HTTP | 주요 응답 필드 | 실패 HTTP | 실제 확인 |
-|---|---|---|---|---:|---|---|:---:|
-| API-01 | GET | `/health` | 없음 | 200 | `status` | 서버 미실행 시 응답 없음 | O |
-| API-02 | POST | `/api/sync/classify/` | `multipart/form-data`, 필드 `image` | 200 | `model_id`, `top1`, `all`, `inference_ms`, `cache_hit` | 400, 413 | O |
-| API-03 | POST | `/api/async/classify/` | `multipart/form-data`, 필드 `image` | **202** | `job_id`, `status`, `check_url` | 400, 413, 503 | O (503은 모의) |
-| API-04 | GET | `/api/async/jobs/{job_id}/` | 경로 정수 `job_id` | 200 | `job_id`, `status`, `model_id`, `top1`, `all`, `inference_ms`, `cache_hit`, `error_message` | 404 | O |
-| WEB-00 | GET | `/` | 없음 | 307 | `/vision/sync/`로 이동 | — | O |
-| WEB-01 | GET | `/vision/sync/` | 없음 | 200 | HTML | — | O |
-| WEB-02 | GET | `/vision/async/` | 없음 | 200 | HTML | — | O |
-| STATIC | GET | `/static/style.css` | 없음 | 200 / 304 | CSS | — | O |
+<br/>
 
-- **422 Validation Error:** `image` 필드를 빼고 보내면 FastAPI가 자동으로 422를 돌려준다. Swagger 문서에 응답 형식이 표시되며, 제공 코드가 직접 만드는 오류는 아니다(실측하지 않음).
+[![About](https://img.shields.io/badge/About_Me-2F6B5E?style=for-the-badge)](#-about-me)
+[![Impact](https://img.shields.io/badge/Impact-5B8A72?style=for-the-badge)](#-impact-at-a-glance)
+[![Projects](https://img.shields.io/badge/Projects-7FA88F?style=for-the-badge)](#-projects)
+[![Stack](https://img.shields.io/badge/Tech_Stack-3D5266?style=for-the-badge)](#-tech-stack)
+[![Contact](https://img.shields.io/badge/Contact-C9A86A?style=for-the-badge)](#-contact)
 
----
+</div>
 
-## 2. API-01 `GET /health`
+<br/>
 
-```bash
-curl http://127.0.0.1:8000/health
-```
-```json
-{"status":"ok"}
-```
-![curl health](evidence/02_health_redis_pg.png)
+## 🌱 About Me
 
-Docker web 컨테이너의 healthcheck도 이 주소를 10초마다 호출한다.
+> **모델의 점수에서 멈추지 않고, 그 점수를 믿을 수 있는 데이터 기준부터 사람이 쓰는 서비스 화면까지 연결합니다.**
 
----
+<table>
+<tr>
+<td width="33%" valign="top">
 
-## 3. API-02 `POST /api/sync/classify/` — 동기 분류
+**🔍 Vision AI & Data Quality**
 
-| 항목 | 내용 |
-|---|---|
-| Content-Type | `multipart/form-data` |
-| 요청 필드 | `image`: JPEG / PNG / WEBP, 1바이트 이상 5MB 이하, 1,200만 픽셀 이하 |
-| 처리 | Redis 캐시 확인 → MISS면 ResNet18 추론 → 캐시에 600초 저장 |
-| 성공 | 200 OK (분류가 끝난 뒤 응답) |
-| 오류 | 400 잘못된 이미지 · 형식 · 해상도 / 413 5MB 초과 |
+라벨 기준서 작성 → 교차검수 → 데이터 분할 → 모델 학습 · 오류 분석까지, ‘**정답지가 맞는가**’부터 확인합니다.
 
-### 요청 (curl)
-```bash
-# 같은 파일을 두 번 보내 캐시 MISS → HIT 확인
-curl -s -X POST -F "image=@dataset/test/healthy/healthy_test.39.jpg" http://127.0.0.1:8000/api/sync/classify/
-```
-![curl 동기 분류 MISS · HIT](evidence/02_sync_cache_miss_hit.png)
+</td>
+<td width="33%" valign="top">
 
-### 응답 필드
+**⚙️ Model to Service**
 
-| 필드 | 타입 | 설명 |
-|---|---|---|
-| `model_id` | string | 추론에 쓴 모델 경로 (`MODEL_PATH`) |
-| `top1` | object | 가장 높은 점수의 `{label, score}` |
-| `all` | array | 점수 높은 순 `[{label, score}, ...]` (3클래스) |
-| `inference_ms` | number \| null | 모델 추론 시간. **캐시 HIT이면 `null`**(0ms가 아니라 추론 생략) |
-| `cache_hit` | boolean | Redis 캐시 재사용 여부 |
+Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **Next.js** 웹 화면으로 사용자에게 연결합니다.
 
-### 성공 응답 — 캐시 MISS (실측, `healthy_test.39.jpg`, web 첫 요청)
-```json
-{
-  "model_id": "artifacts/beans_resnet18",
-  "top1": {"label": "healthy", "score": 0.8065634369850159},
-  "all": [
-    {"label": "healthy", "score": 0.8065634369850159},
-    {"label": "bean_rust", "score": 0.12289518117904663},
-    {"label": "angular_leaf_spot", "score": 0.07054135203361511}
-  ],
-  "inference_ms": 2282.39,
-  "cache_hit": false
-}
-```
+</td>
+<td width="33%" valign="top">
 
-### 성공 응답 — 캐시 HIT (같은 파일 재요청)
-```json
-{
-  "model_id": "artifacts/beans_resnet18",
-  "top1": {"label": "healthy", "score": 0.8065634369850159},
-  "all": [
-    {"label": "healthy", "score": 0.8065634369850159},
-    {"label": "bean_rust", "score": 0.12289518117904663},
-    {"label": "angular_leaf_spot", "score": 0.07054135203361511}
-  ],
-  "inference_ms": null,
-  "cache_hit": true
-}
-```
+**📝 Evidence & Sharing**
 
-### 오류 응답 (실측)
-```bash
-curl -s -w "\nHTTP %{http_code}\n" -F "image=@/tmp/bad.txt" http://127.0.0.1:8000/api/sync/classify/   # 400
-head -c 5300000 /dev/urandom > /tmp/big.jpg
-curl -s -w "\nHTTP %{http_code}\n" -F "image=@/tmp/big.jpg" http://127.0.0.1:8000/api/sync/classify/   # 413
-```
-![curl 400 · 404 · 413](evidence/07_error_400_404_413.png)
+실험 기록, 오류 분석표, README, 발표자료로 **다른 사람이 이해하고 검증할 수 있는 결과**를 남깁니다.
 
-```jsonc
-// 400 — 텍스트 파일 업로드
-{"detail": "올바른 이미지 파일이 아닙니다."}
-// 413 — 5.3MB 파일 업로드
-{"detail": "5MB 이하 파일만 허용합니다."}
-```
+</td>
+</tr>
+</table>
 
-코드상 400 메시지는 상황에 따라 `"이미지 파일은 1바이트 이상, 5MB 이하이어야 합니다."`, `"JPG, PNG, WEBP 이미지만 허용합니다."`, `"이미지 해상도가 너무 큽니다(최대 1200만 픽셀)."`도 있다(실측은 위 1종).
+<br/>
 
----
+## 📊 Impact at a Glance
 
-## 4. API-03 `POST /api/async/classify/` — 비동기 작업 접수
+<img src="assets/impact-v2.svg" width="100%" alt="이물 검출 mAP50 0.62 → 0.76 · 이미지 분류 Test 정확도 98.4% · 프론트엔드 16개 화면 · NET 챌린지 본선 진출"/>
 
-| 항목 | 내용 |
-|---|---|
-| Content-Type | `multipart/form-data` |
-| 요청 필드 | `image` (API-02와 같은 검증을 **큐 등록 전에** 수행) |
-| 처리 | 검증 → `media/jobs/<uuid>.bin` 저장(사용자 파일명은 쓰지 않음) → DB `queued` 행 생성 → `classify_job.delay(job_id)` |
-| 성공 | **202 Accepted** — 작업 *접수*만 뜻하고 분석 완료가 아니다 |
-| 오류 | 400 / 413 / 503 큐 등록 실패(Redis 연결 불가, DB 행은 `failed`로 기록) |
+<sub>※ 각 수치는 아래 프로젝트 README에 기록된 결과입니다. 조각김치 이물 검출의 수치는 5인 팀 공동 성과입니다.</sub>
 
-### 요청 (curl)
-```bash
-# -i: 상태코드(202)와 헤더까지 함께 출력
-curl -i -X POST -F "image=@dataset/test/bean_rust/bean_rust_test.14.jpg" http://127.0.0.1:8000/api/async/classify/
-```
-![curl 비동기 접수 202](evidence/02_async_202.png)
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
 
-### 접수 응답 (실측, `bean_rust_test.14.jpg`)
-```http
-HTTP/1.1 202 Accepted
-server: uvicorn
-content-length: 63
-content-type: application/json
+<br/>
 
-{"job_id":1,"status":"queued","check_url":"/api/async/jobs/1/"}
-```
+## 🚀 Projects
 
-### 503 응답 (모의 테스트 `test_broker_failure`에서 확인)
-```json
-{"detail": "작업 큐 등록 실패: Redis 연결을 확인하세요."}
-```
+<sub>카드를 누르면 저장소로 이동합니다.</sub>
 
----
+<a href="https://github.com/hxxdxm/kimchi-foreign-object-detection"><img src="assets/project-01-v2.svg" width="100%" alt="01 조각김치 이물 검출: 흔들리던 라벨 기준을 바로잡아야 모델도 믿을 수 있기에, 기준서와 교차검수로 900장 정답지를 다시 세워 검출 성능(mAP50)을 0.62에서 0.76으로 높였습니다."/></a>
 
-## 5. API-04 `GET /api/async/jobs/{job_id}/` — 상태 조회
+<table>
+<tr><td width="96" nowrap><b>핵심 성과 (팀)</b></td><td>검출 성능 <b>Val mAP50 0.62 → 0.76</b> · 900 / 900 교차검수 PASS · AI 후보 라벨 72% 그대로 승인</td></tr>
+<tr><td width="96" nowrap><b>문제</b></td><td>식품 공장 이물 사진 900장 중 <b>52%의 라벨이 수정이 필요할 만큼 기준이 흔들려</b> 있었고, 같은 촬영 세션의 사진이 학습 · 검증 데이터에 섞여 있었습니다.</td></tr>
+<tr><td width="96" nowrap><b>내 역할</b></td><td>LLM을 활용해 <b>라벨링 프로그램 1.0 초안</b> 작성 → 팀과 v4.1까지 발전<br/><b>Class · BBox 라벨 기준서</b> 작성, 250장 1차 검수 (애매한 경우 REVIEW로 보내 교차검수)<br/>세션 단위 <b>데이터 재분할</b> · 산출물 11개 최종 점검</td></tr>
+<tr><td width="96" nowrap><b>오류 분석</b></td><td>'나뭇가지' 예측 38건 중 20건을 직접 확인 → <b>16건이 김치 줄기 · 배추 그림자 착각</b>임을 오류 분석표로 정리</td></tr>
+<tr><td width="96" nowrap><b>기술</b></td><td><code>Python</code> <code>tkinter</code> <code>YOLO11n</code> <code>Ultralytics</code> <code>Figma</code></td></tr>
+</table>
 
-| status | 의미 | `top1`·`all` | `error_message` |
-|---|---|---|---|
-| `queued` | 접수됨, worker 대기 | null | null |
-| `running` | worker 처리 중 | null | null |
-| `done` | 완료 | 값 있음 | null |
-| `failed` | 실패 | null | 오류 내용 |
+<a href="https://github.com/hxxdxm/kimchi-foreign-object-detection"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
 
-`inference_ms`와 `cache_hit`은 상태와 관계없이 DB 값을 그대로 돌려준다.
 
-### 요청 (curl)
-```bash
-curl -s http://127.0.0.1:8000/api/async/jobs/1/
-```
-![curl 상태 조회 done](evidence/02_async_job_done.png)
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
 
-### 완료 응답 (실측, job 1)
-```json
-{
-  "job_id": 1,
-  "status": "done",
-  "model_id": "artifacts/beans_resnet18",
-  "top1": {"label": "bean_rust", "score": 0.5152392387390137},
-  "all": [
-    {"label": "bean_rust", "score": 0.5152392387390137},
-    {"label": "angular_leaf_spot", "score": 0.2754869759082794},
-    {"label": "healthy", "score": 0.20927377045154572}
-  ],
-  "inference_ms": 2269.19,
-  "cache_hit": false,
-  "error_message": null
-}
-```
+<br/>
 
-### 대기 응답 (실측, worker 정지 중 job 17)
-```json
-{"job_id":17,"status":"queued","model_id":"artifacts/beans_resnet18","top1":null,"all":null,"inference_ms":null,"cache_hit":null,"error_message":null}
-```
+<a href="https://github.com/hxxdxm/plant-disease-vision-api"><img src="assets/project-02.svg" width="100%" alt="02 Plant Disease Vision API: 기준 모델이 병든 잎을 정상으로 놓치는 문제를 해결하려고, 약점을 실험으로 하나씩 고쳐 정확도를 높이고 서비스로 배포했습니다. Test 정확도 98.4%"/></a>
 
-### 오류 응답 (실측)
-```bash
-curl -s -w "\nHTTP %{http_code}\n" http://127.0.0.1:8000/api/async/jobs/999999/   # 404 (위 400 · 404 · 413 캡처에 포함)
-```
-```jsonc
-// 404 — 없는 job_id 999999
-{"detail": "해당 작업이 없습니다."}
-```
+<table>
+<tr><td width="96" nowrap><b>문제</b></td><td>제공된 기준 코드로 학습하면 Test 정확도가 71.9%에 그치고, <b>병든 잎 13장을 정상으로 놓쳤습니다.</b> 모델을 실제 요청으로 받을 서비스 구조도 필요했습니다.</td></tr>
+<tr><td width="96" nowrap><b>수행</b></td><td><code>ResNet-18</code>을 <b>각진잎반점병 · 녹병 · 정상</b> 3클래스로 Fine-tuning · 제공 코드의 약점 4가지를 <b>변수 하나씩 바꾸는 실험</b>으로 확인 · Validation으로 모델을 고른 뒤 Test는 단 1회 평가</td></tr>
+<tr><td width="96" nowrap><b>결과</b></td><td>Test 정확도 <b>71.9% → 98.4%</b> · 병든 잎 놓침 <b>13장 → 0장</b> · 이미지 변형 8종 평균 정확도 95.7%</td></tr>
+<tr><td width="96" nowrap><b>서비스</b></td><td>FastAPI 동기 API · Redis 캐시 · Celery 비동기 작업 · PostgreSQL 기록을 <b>Docker Compose 4개 서비스</b>로 구성</td></tr>
+<tr><td width="96" nowrap><b>기술</b></td><td><code>PyTorch</code> <code>Transformers</code> <code>FastAPI</code> <code>Celery</code> <code>Redis</code> <code>PostgreSQL</code> <code>Docker</code></td></tr>
+</table>
 
----
+<a href="https://github.com/hxxdxm/plant-disease-vision-api"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
 
-## 6. 필드명 주의
 
-| 위치 | 이름 |
-|---|---|
-| API 응답 | **`all`** |
-| DB 컬럼 | **`all_scores`** |
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
 
-같은 데이터지만 이름이 다르다. 응답 필드를 `all_scores`로 바꾸지 않았다.
+<br/>
 
----
+<a href="https://github.com/hxxdxm/Capstone2"><img src="assets/project-03.svg" width="100%" alt="03 이음 독서 커뮤니티: 혼자 하는 독서를 취향이 맞는 사람과 잇고 싶어 서비스를 기획하고, 프론트엔드 16개 화면을 만들어 졸업작품발표회에서 발표했습니다."/></a>
 
-## 7. 실행 근거표
+<table>
+<tr><td width="96" nowrap><b>문제</b></td><td>혼자 하는 독서를 <b>취향이 맞는 사람과 연결</b>하고, 감상과 문장을 나눌 공간이 필요했습니다.</td></tr>
+<tr><td width="96" nowrap><b>내 역할</b></td><td>2인 팀 <b>팀장</b> · 서비스 기획 · UI/UX 설계 · <b>프론트엔드 16개 화면</b> 구현 (모임방 채팅, DM, 필사 전시회, 마이페이지 등)</td></tr>
+<tr><td width="96" nowrap><b>개선</b></td><td>졸업 후 저장소를 다시 실행해 <b>빌드 오류(누락된 의존성)와 화면 버그</b>를 찾아 수정, 4개 화면에 흩어진 로직을 공통 함수로 정리</td></tr>
+<tr><td width="96" nowrap><b>기술</b></td><td><code>Next.js</code> <code>React</code> <code>TypeScript</code> <code>Socket.io</code></td></tr>
+</table>
 
-| 검증 ID | 테스트 입력 | 실제 상태코드 | 결과 | 증빙 |
-|---|---|---:|---|---|
-| API-01-T01 | GET `/health` | 200 | `{"status":"ok"}` | `evidence/02_health_redis_pg.png` |
-| API-02-T01 | `healthy_test.39.jpg` 1회 | 200 | healthy, MISS | `evidence/02_sync_cache_miss_hit.png` |
-| API-02-T02 | 같은 파일 2회 | 200 | healthy, HIT, `inference_ms:null` | `evidence/02_sync_cache_miss_hit.png` |
-| API-02-T03 | 3클래스 test 이미지 (01 로컬) | 200 ×3 | 3개 모두 폴더 라벨과 일치 | `evidence/01_sync_curl.png` |
-| API-02-T04 | `/tmp/bad.txt` | 400 | 올바른 이미지 아님 | `evidence/07_error_400_404_413.png` |
-| API-02-T05 | 5.3MB 무작위 바이트 | 413 | 5MB 이하만 허용 | `evidence/07_error_400_404_413.png` |
-| API-03-T01 | `bean_rust_test.14.jpg` | 202 | job_id 1, queued | `evidence/02_async_202.png` |
-| API-04-T01 | job_id 1 | 200 | done, bean_rust | `evidence/02_async_job_done.png` |
-| API-04-T02 | job_id 999999 | 404 | 해당 작업 없음 | `evidence/07_error_400_404_413.png` |
-| API-04-T03 | worker 정지 중 job 17 | 200 | queued 유지 → 재시작 후 done | `evidence/07_worker_stop_queued_done.png` |
-| WEB-01 | `/vision/sync/` 업로드 | 200 | bean_rust_test.0 → bean_rust, 35ms | `evidence/01_sync_ui.png` |
-| WEB-02 | `/vision/async/` 업로드 | 202 → 200 | bean_rust_test.1 → bean_rust, 접수 22ms / 전체 1041ms | `evidence/02_async_ui.png` |
-| API-03-T02 | Redis 큐 장애(모의) | 503 | `test_broker_failure` PASS | `evidence/02_pytest_fail_then_pass.png` |
-| SWG-01 | Swagger 동기 Try it out · `bean_rust_test.41.jpg` | 200 | **healthy 0.4867 (오분류)**, inference 24.89ms, MISS | `evidence/03_swagger_sync.png` |
-| SWG-02 | Swagger 비동기 접수 · `healthy_test.20.jpg` | 202 | job_id 18, queued | `evidence/03_swagger_async_202.png` |
-| SWG-03 | Swagger 상태 조회 · job_id 18 | 200 | done, healthy 0.6793, inference 56.59ms, MISS | `evidence/03_swagger_async_done.png` |
+<a href="https://github.com/hxxdxm/Capstone2"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
 
-SWG-01은 **API는 정상(200)이지만 모델이 틀린 사례**다. 정답 폴더는 bean_rust인데 healthy로 예측했고 점수도 0.4867로 낮다. 서비스 모델(Head-only)의 Validation Accuracy가 0.7669라 이런 오분류가 생길 수 있으며, API 기능 검증과 모델 정확도는 따로 판단한다.
 
-> `202`는 작업 접수, 상태 조회 `200`의 `status:"done"`이 작업 완료다.
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
+
+<br/>
+
+<!-- TODO: TrueHue 저장소를 fork하면 아래 img를 <a href="https://github.com/hxxdxm/저장소이름">...</a>로 감싸기 -->
+<img src="assets/project-04.svg" width="100%" alt="04 TrueHue: 색 구분이 어려운 사람도 지금 보는 색을 알 수 있도록, 색각이상자를 위한 색 탐지 프로그램을 기획하고 Figma로 화면을 설계하고 있습니다."/>
+
+<table>
+<tr><td width="96" nowrap><b>소개</b></td><td>색각이상자를 위한 색 탐지 프로그램</td></tr>
+<tr><td width="96" nowrap><b>내 역할</b></td><td>2인 팀 · <b>Figma 화면 설계</b></td></tr>
+<tr><td width="96" nowrap><b>상태</b></td><td>진행 중 · 저장소 연결 예정</td></tr>
+<tr><td width="96" nowrap><b>기술</b></td><td><code>Figma</code></td></tr>
+</table>
+
+<br/>
+
+#### 🗂️ 그 밖의 활동
+
+| 프로젝트 | 내용 | 역할 · 상태 |
+| :--- | :--- | :--- |
+| **넷티마이즈** | 경동대학교 **2024-2학기 취업역량경진대회** (경동대학교 취업복지처) · 2024.11 | 🏆 **대상** · 상금 100만 원 |
+| **CrossSafe** | **안전한 횡단보도 통행을 위한 자동차 탐지 시스템** — 교차로에서 우회전 차량의 일시정지 여부를 인식 · K-디지털 챌린지 : NET 챌린지 캠프 시즌10 | 자료조사 · 발표자료 제작 · 🏆 **기획안 심사 통과 (15팀 선정) · 본선 진출** |
+
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
+
+<br/>
+
+## 🎯 What I Do
+
+| 영역 | 해 본 것 |
+| :--- | :--- |
+| **🔍 Vision AI** | 이미지 분류 Fine-tuning (ResNet-18), 객체 검출 (YOLO11n), 실패 사례 · 오검출 원인 분석 |
+| **🧹 Data Quality** | Class · BBox 라벨 기준서, 1차 검수 · 교차검수 규칙, 촬영 세션 단위 데이터 분할 |
+| **⚙️ Model Serving** | FastAPI · Redis 캐시 · Celery 비동기 작업 · PostgreSQL 기록 · Docker Compose |
+| **🖥️ Web Frontend** | Next.js · React 화면 구현, 실시간 채팅 UI, Figma 화면 설계 |
+| **📈 Data Analysis** | R · SPSS · Excel 통계 분석 (신뢰구간 · 가설검정 · 다변량분석) |
+| **📝 Documentation** | README · 트러블슈팅 · 오류 분석표 · 발표자료 · 팀 산출물 점검 |
+
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
+
+<br/>
+
+## 🔄 How I Work
+
+<p align="center"><img src="assets/how-i-work.svg" width="100%" alt="End-to-End Project Flow: Plan → Design → Build → Ship → Review"/></p>
+
+<sub>기획부터 배포까지 <b>한 프로젝트의 전체 흐름</b>을 설계하고, 각 계층이 주고받는 <b>데이터 약속</b>을 먼저 맞춘 뒤 구현합니다.<br/>배포 후에는 <b>리뷰와 회고</b>로 찾은 개선점을 다음 설계에 다시 반영합니다.</sub>
+
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
+
+<br/>
+
+## 🛠 Tech Stack
+
+<div align="center">
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black) ![YOLO11](https://img.shields.io/badge/YOLO11-111F68?style=flat-square&logo=yolo&logoColor=white) ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
+<br/>
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) ![EC2](https://img.shields.io/badge/EC2-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white) ![S3](https://img.shields.io/badge/S3-569A31?style=flat-square&logo=amazonwebservices&logoColor=white) ![G5](https://img.shields.io/badge/G5-76B900?style=flat-square&logo=nvidia&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white)
+
+<sub>Frontend · Backend · AI &nbsp;&nbsp;|&nbsp;&nbsp; Language · Deploy · Collaboration</sub>
+
+</div>
+
+<br/>
+
+<br/>
+
+| 분야 | 기술 |
+| :--- | :--- |
+| 🖥️ **Frontend** | `HTML5` `CSS3` `JavaScript` `TypeScript` `React` `Next.js` `Socket.io` |
+| ⚙️ **Backend** | `FastAPI` `Celery` `Redis` `PostgreSQL` |
+| 🤖 **AI · Vision** | `PyTorch` `Hugging Face Transformers` `YOLO11 (Ultralytics)` `OpenCV` |
+| 📈 **Data** | `R` `SPSS` `Excel` |
+| 💻 **Language · CS** | `Python` `C` `C++` |
+| ☁️ **Deploy · Infra** | `Docker` `Docker Compose` `Kubernetes` `Nginx` `Linux` `AWS EC2` `AWS S3` `AWS EC2 G5` |
+| 🤝 **Collaboration** | `Git` `GitHub` `Figma` |
+
+
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
+
+<br/>
+
+## 🎓 Education & Activities
+
+| 기간 | 내용 | |
+| :--- | :--- | :---: |
+| 2023 – | **컴퓨터공학** 전공 | 🎓 |
+| 2023.06 – 2023.11 | **K-디지털 챌린지 : NET 챌린지 캠프 시즌10** (과학기술정보통신부 주최) · CrossSafe | 🏆 본선 진출 |
+| 2024 – | **빅데이터분석 융합전공** (부전공 18학점) | 📈 |
+| 2024.11 | **2024-2학기 취업역량경진대회** (경동대학교 취업복지처) · 팀 넷티마이즈 | 🏆 대상 |
+| 2026.06 | 춘계 졸업작품발표회 · 이음 (팀장 · 프론트엔드) | 🎤 발표 |
+| 2026.07 – 2027.02 | 현장 데이터 기반 Vision AI & 산업분야 Vertical AI 융합 전문가 양성 과정 | 🌱 수강 중 |
+
+**📈 빅데이터분석 융합전공 수강 과목**
+
+<br/>
+
+| 과목 | 도구 · 내용 |
+| :--- | :--- |
+| 빅데이터마이닝 | `Excel` 신뢰구간 · 필요한 표본 크기 · 가설검정 |
+| 빅데이터프로그래밍 | `R` |
+| 다변량분석 | `SPSS` |
+| 빅데이터마케팅 · 빅데이터시각화디자인 · 빅데이터개론 | 데이터 해석 · 시각화 |
+
+
+<br/>
+
+## 📬 Contact
+
+<div align="center">
+
+[![GitHub](https://img.shields.io/badge/GitHub-hxxdxm-1F2D3A?style=for-the-badge&logo=github)](https://github.com/hxxdxm)
+[![Email](https://img.shields.io/badge/Email-1004hamine@naver.com-2F6B5E?style=for-the-badge&logo=naver&logoColor=white)](mailto:1004hamine@naver.com)
+
+<br/>
+
+<sub>Set the standard · Check the data · Build the model · Serve the result · Share the evidence</sub>
+
+</div>
+
+<div align="right"><a href="#top"><sub><b>↑ 맨 위로</b></sub></a></div>
