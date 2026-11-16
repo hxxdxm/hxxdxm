@@ -175,82 +175,13 @@ flowchart LR
 
 <div align="center">
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
-![YOLO11](https://img.shields.io/badge/YOLO11-111F68?style=flat-square&logo=yolo&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black) ![YOLO11](https://img.shields.io/badge/YOLO11-111F68?style=flat-square&logo=yolo&logoColor=white) ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
+<br/>
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white) ![EC2](https://img.shields.io/badge/EC2-FF9900?style=flat-square&logo=amazonwebservices&logoColor=white) ![S3](https://img.shields.io/badge/S3-569A31?style=flat-square&logo=amazonwebservices&logoColor=white) ![G5](https://img.shields.io/badge/G5-76B900?style=flat-square&logo=nvidia&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white)
+
+<sub>Frontend · Backend · AI &nbsp;&nbsp;|&nbsp;&nbsp; Language · Deploy · Collaboration</sub>
 
 </div>
-
-<details>
-<summary><b>🔎 기술별로 어디서 써 봤는지 펼쳐 보기</b></summary>
-
-<br/>
-
-#### 🖥️ Frontend
-
-| 기술 | 사용 경험 |
-| :--- | :--- |
-| `HTML5` `CSS3` `JavaScript` | 웹 페이지 제작 실습 |
-| `React` `Next.js` `TypeScript` | **이음** 졸업작품 프론트엔드 16개 화면 |
-| `Socket.io` | **이음** 모임방 그룹 채팅 · 1:1 DM 실시간 UI |
-
-#### ⚙️ Backend
-
-| 기술 | 사용 경험 |
-| :--- | :--- |
-| `FastAPI` | **Plant Disease** 모델 추론 API |
-| `Redis` `Celery` | **Plant Disease** 결과 캐시 · 비동기 작업 처리 |
-| `PostgreSQL` | **Plant Disease** 작업 기록 저장 |
-
-#### 🤖 AI · Data
-
-| 기술 | 사용 경험 |
-| :--- | :--- |
-| `PyTorch` `Hugging Face Transformers` | **Plant Disease** ResNet-18 Fine-tuning · 약점 개선 실험 |
-| `YOLO11n` `Ultralytics` | **조각김치** 이물 검출 모델 학습 · 평가 · 오검출 분석 |
-| `OpenCV` | 머신비전 검사 실습 (ROI · Morphology · Contour) |
-| `tkinter` | **조각김치** 라벨 검수 프로그램 |
-| `R` · `SPSS` · `Excel` | 빅데이터분석 융합전공 (빅데이터프로그래밍 · 다변량분석 · 빅데이터마이닝) |
-
-#### 💻 Language · CS
-
-| 기술 | 사용 경험 |
-| :--- | :--- |
-| `Python` | 주력 언어 · AI 모델 · API · 데이터 처리 |
-| `C` `C++` | 컴퓨터공학 전공 수업 |
-
-#### ☁️ Deploy · Infra
-
-| 기술 | 사용 경험 |
-| :--- | :--- |
-| `Docker` `Docker Compose` | **Plant Disease** API · Redis · Celery · DB 4개 서비스 구성 |
-| `Nginx` | 클라우드 실습 · 정적 페이지 제공 및 API 연결 |
-| `Kubernetes` | 클라우드 수업 실습 |
-| `Linux` | 개발 · 실습 환경 (WSL) |
-| `AWS EC2` `AWS S3` | 서버 배포 · 파일 저장 |
-| `AWS EC2 G5` | GPU 인스턴스 모델 학습 🔜 **진행 예정** |
-
-#### 🤝 Collaboration
-
-| 기술 | 사용 경험 |
-| :--- | :--- |
-| `Git` `GitHub` | 개인 branch → Pull Request → main merge 협업 (**조각김치** 5인 팀) |
-| `Figma` | **TrueHue** 화면 설계 · 프로젝트 결과 정리 |
-
-</details>
 
 <br/>
 
