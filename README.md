@@ -113,15 +113,19 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 <br/>
 
-<!-- TODO: TrueHue 저장소를 fork하면 아래 img를 <a href="https://github.com/hxxdxm/저장소이름">...</a>로 감싸기 -->
-<img src="assets/project-04.svg" width="100%" alt="04 TrueHue: 색 구분이 어려운 사람도 지금 보는 색을 알 수 있도록, 색각이상자를 위한 색 탐지 프로그램을 기획하고 Figma로 화면을 설계하고 있습니다."/>
+<a href="https://github.com/simpson92/TrueHue"><img src="assets/project-04-v2.svg" width="100%" alt="04 TrueHue: 조명이 바뀌면 같은 색도 다르게 찍히는 문제를 풀려고, 조명을 추정해 보정하는 색 이름 감별기를 만들어 정답률을 72.2%에서 85.1%로 높였습니다."/></a>
 
 <table>
-<tr><td width="96" nowrap><b>소개</b></td><td>색각이상자를 위한 색 탐지 프로그램</td></tr>
-<tr><td width="96" nowrap><b>내 역할</b></td><td>2인 팀 · <b>Figma 화면 설계</b></td></tr>
-<tr><td width="96" nowrap><b>상태</b></td><td>진행 중 · 저장소 연결 예정</td></tr>
-<tr><td width="96" nowrap><b>기술</b></td><td><code>Figma</code></td></tr>
+<tr><td width="96" nowrap><b>핵심 성과 (팀)</b></td><td>색 이름 정답률 <b>72.2% → 85.1%</b> (+12.9%p, 95% 구간 +10.7 ~ +15.1) · 평가용 378장 · 8,240칸 · 조명 추정 오차 중앙값 <b>1.68°</b> · 따뜻한 조명에서 <b>+31.9%p</b></td></tr>
+<tr><td width="96" nowrap><b>문제</b></td><td>사진 속 색은 <b>물체 색 × 조명 색</b>이라, 조명을 모르면 흰 종이도 전구 아래선 주황으로 찍힙니다. 색각이상자는 틀린 답을 스스로 알아채기 어렵습니다.</td></tr>
+<tr><td width="96" nowrap><b>수행</b></td><td>공개 데이터셋(Gehler-Shi 568장)으로 조명 추정 3종(Gray World · White Patch · <b>Shades of Gray</b>)을 고정 보정 기준선과 비교 → Lab 색상각 기반 <b>11색 이름 규칙</b> · 평가용 사진은 봉인 후 마지막에 1회</td></tr>
+<tr><td width="96" nowrap><b>내 역할</b></td><td>2인 팀 · <b>검토 · 결정 · 실행 검증</b> — 정답표 · 이름 규칙 · <b>채점 규칙 확정</b> (애매한 8칸 처리, 보조 지표 "이름 일관성"), 실행 결과를 숫자와 눈으로 확인 후 커밋, <b>실제 폰 카메라 시험</b> · 시연 녹화</td></tr>
+<tr><td width="96" nowrap><b>서비스</b></td><td>FastAPI 웹 화면 · 폰 카메라(IP Webcam) <b>실시간 모드 7~12장/초</b> · 판단이 어려운 색은 이름을 주지 않는 안전장치</td></tr>
+<tr><td width="96" nowrap><b>기술</b></td><td><code>Python</code> <code>OpenCV</code> <code>NumPy</code> <code>FastAPI</code> <code>matplotlib</code> <code>Git</code></td></tr>
 </table>
+
+<a href="https://github.com/simpson92/TrueHue"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
+<a href="https://www.figma.com/design/hzU3DnxlzOEoPqqOxaFbez/TrueHue-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=0-1"><img src="https://img.shields.io/badge/Portfolio-Figma-B08A3E?style=flat-square&logo=figma&logoColor=white" alt="figma portfolio"/></a>
 
 <br/>
 
