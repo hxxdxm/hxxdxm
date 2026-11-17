@@ -66,6 +66,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 <a href="https://github.com/hxxdxm/kimchi-foreign-object-detection"><img src="assets/project-01-v2.svg" width="100%" alt="01 조각김치 이물 검출: 흔들리던 라벨 기준을 바로잡아야 모델도 믿을 수 있기에, 기준서와 교차검수로 900장 정답지를 다시 세워 검출 성능(mAP50)을 0.62에서 0.76으로 높였습니다."/></a>
 
 <table>
+<tr><td width="96" nowrap><b>기간</b></td><td>2026.10.02 ~ 10.22 (약 3주) · 하루 약 5시간</td></tr>
 <tr><td width="96" nowrap><b>핵심 성과 (팀)</b></td><td>검출 성능 <b>Val mAP50 0.62 → 0.76</b> · 900 / 900 교차검수 PASS · AI 후보 라벨 72% 그대로 승인</td></tr>
 <tr><td width="96" nowrap><b>문제</b></td><td>식품 공장 이물 사진 900장 중 <b>52%의 라벨이 수정이 필요할 만큼 기준이 흔들려</b> 있었고, 같은 촬영 세션의 사진이 학습 · 검증 데이터에 섞여 있었습니다.</td></tr>
 <tr><td width="96" nowrap><b>내 역할</b></td><td>LLM을 활용해 <b>라벨링 프로그램 1.0 초안</b> 작성 → 팀과 v4.1까지 발전<br/><b>Class · BBox 라벨 기준서</b> 작성, 250장 1차 검수 (애매한 경우 REVIEW로 보내 교차검수)<br/>세션 단위 <b>데이터 재분할</b> · 산출물 11개 최종 점검</td></tr>
@@ -83,6 +84,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 <a href="https://github.com/hxxdxm/plant-disease-vision-api"><img src="assets/project-02.svg" width="100%" alt="02 Plant Disease Vision API: 기준 모델이 병든 잎을 정상으로 놓치는 문제를 해결하려고, 약점을 실험으로 하나씩 고쳐 정확도를 높이고 서비스로 배포했습니다. Test 정확도 98.4%"/></a>
 
 <table>
+<tr><td width="96" nowrap><b>기간</b></td><td>2026.11.04 (1일 집중) · 약 8시간</td></tr>
 <tr><td width="96" nowrap><b>문제</b></td><td>제공된 기준 코드로 학습하면 Test 정확도가 71.9%에 그치고, <b>병든 잎 13장을 정상으로 놓쳤습니다.</b> 모델을 실제 요청으로 받을 서비스 구조도 필요했습니다.</td></tr>
 <tr><td width="96" nowrap><b>수행</b></td><td><code>ResNet-18</code>을 <b>각진잎반점병 · 녹병 · 정상</b> 3클래스로 Fine-tuning · 제공 코드의 약점 4가지를 <b>변수 하나씩 바꾸는 실험</b>으로 확인 · Validation으로 모델을 고른 뒤 Test는 단 1회 평가</td></tr>
 <tr><td width="96" nowrap><b>결과</b></td><td>Test 정확도 <b>71.9% → 98.4%</b> · 병든 잎 놓침 <b>13장 → 0장</b> · 이미지 변형 8종 평균 정확도 95.7%</td></tr>
@@ -100,6 +102,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 <a href="https://github.com/hxxdxm/Capstone2"><img src="assets/project-03.svg" width="100%" alt="03 이음 독서 커뮤니티: 혼자 하는 독서를 취향이 맞는 사람과 잇고 싶어 서비스를 기획하고, 프론트엔드 16개 화면을 만들어 졸업작품발표회에서 발표했습니다."/></a>
 
 <table>
+<tr><td width="96" nowrap><b>기간</b></td><td>2026.03 ~ 2026.06 (약 4개월) · 하루 약 5시간</td></tr>
 <tr><td width="96" nowrap><b>문제</b></td><td>혼자 하는 독서를 <b>취향이 맞는 사람과 연결</b>하고, 감상과 문장을 나눌 공간이 필요했습니다.</td></tr>
 <tr><td width="96" nowrap><b>내 역할</b></td><td>2인 팀 <b>팀장</b> · 서비스 기획 · UI/UX 설계 · <b>프론트엔드 16개 화면</b> 구현 (모임방 채팅, DM, 필사 전시회, 마이페이지 등)</td></tr>
 <tr><td width="96" nowrap><b>개선</b></td><td>졸업 후 저장소를 다시 실행해 <b>빌드 오류(누락된 의존성)와 화면 버그</b>를 찾아 수정, 4개 화면에 흩어진 로직을 공통 함수로 정리</td></tr>
@@ -116,6 +119,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 <a href="https://github.com/simpson92/TrueHue"><img src="assets/project-04-v2.svg" width="100%" alt="04 TrueHue: 조명이 바뀌면 같은 색도 다르게 찍히는 문제를 풀려고, 조명을 추정해 보정하는 색 이름 감별기를 만들어 정답률을 72.2%에서 85.1%로 높였습니다."/></a>
 
 <table>
+<tr><td width="96" nowrap><b>기간</b></td><td>2026.10.27 ~ 11.13 (약 2.5주) · 저녁 하루 약 3시간</td></tr>
 <tr><td width="96" nowrap><b>핵심 성과 (팀)</b></td><td>색 이름 정답률 <b>72.2% → 85.1%</b> (+12.9%p, 95% 구간 +10.7 ~ +15.1) · 평가용 378장 · 8,240칸 · 조명 추정 오차 중앙값 <b>1.68°</b> · 따뜻한 조명에서 <b>+31.9%p</b></td></tr>
 <tr><td width="96" nowrap><b>문제</b></td><td>사진 속 색은 <b>물체 색 × 조명 색</b>이라, 조명을 모르면 흰 종이도 전구 아래선 주황으로 찍힙니다. 색각이상자는 틀린 답을 스스로 알아채기 어렵습니다.</td></tr>
 <tr><td width="96" nowrap><b>수행</b></td><td>공개 데이터셋(Gehler-Shi 568장)으로 조명 추정 3종(Gray World · White Patch · <b>Shades of Gray</b>)을 고정 보정 기준선과 비교 → Lab 색상각 기반 <b>11색 이름 규칙</b> · 평가용 사진은 봉인 후 마지막에 1회</td></tr>
