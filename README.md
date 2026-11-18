@@ -116,7 +116,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 
 <br/>
 
-<a href="https://github.com/simpson92/TrueHue"><img src="assets/project-04-v2.svg" width="100%" alt="04 TrueHue: 조명이 바뀌면 같은 색도 다르게 찍히는 문제를 풀려고, 조명을 추정해 보정하는 색 이름 감별기를 만들어 정답률을 72.2%에서 85.1%로 높였습니다."/></a>
+<a href="https://github.com/hxxdxm/TrueHue"><img src="assets/project-04-v2.svg" width="100%" alt="04 TrueHue: 조명이 바뀌면 같은 색도 다르게 찍히는 문제를 풀려고, 조명을 추정해 보정하는 색 이름 감별기를 만들어 정답률을 72.2%에서 85.1%로 높였습니다."/></a>
 
 <table>
 <tr><td width="96" nowrap><b>기간</b></td><td>2026.10.27 ~ 11.13 (약 2.5주) · 저녁 하루 약 3시간</td></tr>
@@ -128,7 +128,7 @@ Fine-tuning한 모델을 **FastAPI · Celery · Docker**로 서비스하고, **N
 <tr><td width="96" nowrap><b>기술</b></td><td><code>Python</code> <code>OpenCV</code> <code>NumPy</code> <code>FastAPI</code> <code>matplotlib</code> <code>Git</code></td></tr>
 </table>
 
-<a href="https://github.com/simpson92/TrueHue"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
+<a href="https://github.com/hxxdxm/TrueHue"><img src="https://img.shields.io/badge/Repository-1F2D3A?style=flat-square&logo=github" alt="repository"/></a>
 <a href="https://www.figma.com/design/hzU3DnxlzOEoPqqOxaFbez/TrueHue-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=0-1"><img src="https://img.shields.io/badge/Portfolio-Figma-B08A3E?style=flat-square&logo=figma&logoColor=white" alt="figma portfolio"/></a>
 
 <br/>
